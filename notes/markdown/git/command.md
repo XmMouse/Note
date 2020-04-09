@@ -56,12 +56,20 @@ git checkout -b new branch
 本质-影响的是分支游标如master
 git reset Head -- filepath 覆盖暂存区
 git reset --soft(只是移动游标)/hard（覆盖工作区和暂存区）/mixed（覆盖暂存区）
-## 其他命令
-git rev-parse --git-dir --show-toplevel --show-prefix
+## ^
+表示向上移动当有多个父提交的时候用^2的方式表示第几个父提交
+1. ^  父提交
+2. ^^ 父提交的父提交
+3. ^3 第三个父提交
+4. ~3 向上移动三个父提交 ～加数字表示有多少个^
+## git rev-parse
+git rev-parse作用一:  的作用是把引用换成hash
+git rev-parse作用二： --git-dir --show-toplevel --show-prefix
+## git rev-lsit 
+列出某个提交的所有父提交
 ## 显示目录
     ls-tree(查看版本库目录)
     ls-file(查看暂存区目录)
-    ls-
     cat-file
 ## 和工作区的关系
 reset 不影响工作区覆盖index
