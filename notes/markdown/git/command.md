@@ -145,3 +145,82 @@ B 改了文件 可以执行成功
 所以解决冲突只用编辑本地文件然后add
 3. 树冲突
 对同一个文件同时改名字
+暂存区也分为了几个小区表示为0 1 2 3 区
+1 2 3 区为冲突区
+暂存区和工作区会保存 A 用户的更改 B 用户的更改
+解决树冲突只需要删除暂存区不需要的就可以了 git rm 
+4. 冲突标志
+<<<<<<<本地更改|||||||||原始数据===========导入更改>>>>>>>
+## tag
+### 分类
+git tag -d
+1. 轻量级
+git tag name commit
+2. 带说明
+git tag -m "" commit
+3. 带签名
+### git describe 显示体提交所属的tag
+git tag -n2 最多显示2行里程碑说明、
+git tag -l 
+### 推送里程碑到远程仓库
+git push origin mytag / refs/tags/*
+删除推送到远程的分支
+git push remote_url :tagname
+## 引用表达式
+refs：refs
+用前面的值改写后面的值
+## 分支
+为什么需要分支
+1. 版本不同 linux window（版本）
+2. 多任务（任务）
+2. 敏捷开发多模块（模块-也可以说是任务）
+分支种类
+1. 发布分支-从发布版本开始只是修改bug
+所有人都工作在同一个发布分支上
+2. 特性分支 - 功能复杂 开发周期长的 容器冲突的
+特性分支可以有很多个
+3. 买主分支 - 项目依赖别的项目监视依赖的发布
+又可以分为长期分支和短期分支
+## 远程分支
+1. 一个版本库最可以有任意多个版本库
+git ls-remote
+git show-ref
+git checkout --track 基于有跟踪的版本库创建新的有跟踪的版本库
+2. 远程版本库
+git remote add new-remote '' 
+git remote -v
+git remote set-url --push new-remote url push和fetch可以不同
+git remote rename
+git remote rm 
+拉取版本库和拉区分支有所区别
+git branch -r
+## 补丁
+git format-patch -s a...b
+git send-email *.patch
+git am xxx.patch
+使用本地补丁 cat xxx.pathc | git am
+git apply 应用于工作目录或者暂存区 可以使用git diff 的文件
+git am 应用于当前分支
+## git 协同模型
+卖主分支的主要问题卖主分支和master分支合并问题卖主分支版本为初级版本，master版本太高了
+1. topgit 协同模型
+ 基准分支（管理特性分支间的依赖）
+ topgit原理
+ 使用上游分支作为主线分支其他特性分支作为分支
+ 解决的问题分支的依赖问题（卖主分支问题）
+ 2. 子模组的使用
+ git submodule add git.respority path
+ 解决的是共同引用的问题
+ git submodule status
+ 默认不检出子模组
+ git submodule init 写入.git/config
+ git submodule update 实际更新
+ 3. 子树合并
+ 外部版本库会作为一个目录被被整个复制到本版本库
+## 网络协议
+ ### http 
+ 只需要把.git目录当作web服务器更目录就可以了
+ .git/info/refs - git update-server-info
+ .git/objects/info/packs
+ ### http智能协议
+ git-http-banckend
