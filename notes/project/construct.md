@@ -1,0 +1,23 @@
+# 工程目录结构
+- doc
+- node_module
+- public // 静态资源只是拷贝不参与webpack打包
+- src // webpack根目录
+    - api
+    - assets
+    - components
+    - ℹi8n
+    - layout
+    - libs 装有util和mixin-自定义指令等
+    - pages
+    - plugin 自己开发的功能性组件
+- .editconfig
+- .env 所与环境被载入
+- .env.development 开发环境被载入
+- .eslitignore
+- .eslitrc.js
+- .postcssrc.js
+- .babel.config.js
+- package.json // 工程描述文件
+- routegen.js // 自动生成对应的路由及页面模板
+- vue.config.js // vue cli 配置文件
