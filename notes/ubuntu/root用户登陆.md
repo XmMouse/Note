@@ -1,0 +1,3 @@
+### server
+passwd root
+### deskdop
