@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btn{
+        height: 30px;
+        border: 1px solid;
+    }
+    body{
+        counter-reset: xiaomeng -1;
+    }
+    .test {
+        width: 100px;
+        height: 100px;
+        border: 1px solid;
+        float: left;
+        margin: 8px;
+        counter-increment: xiaomeng;
+    }
+    .test::before {
+        content: counter(xiaomeng);
+    }
+</style>
+<body>
+    <div class="btn"></div>
+    <div class="test"></div>
+    <div class="test"></div>
+    <div class="test"></div>
+</body>
+<script>
+  let btn = document.querySelector('.btn')
+  btn.addEventListener('click', () => {
+      let doms = Array.from(document.querySelectorAll('.test'))
+      let first = doms.map((dom) => {
+         let {left, top}= dom.getBoundingClientRect()
+         return {left, top}
+      })
+      let insert = document.createElement('div')
+      insert.classList.add('test')
+      document.body.insertBefore(insert, document.querySelector('.test'))
+      let last = doms.map((dom) => {
+         let {left, top}= dom.getBoundingClientRect()
+         return {left, top}
+      })
+      let invert = doms.map((dom, index) => {
+        return {
+            left: first[index].left - last[index].left,
+            top: first[index].top - last[index].top
+        }
+      })
+      doms.forEach((dom, index) => {
+        dom.style.transform = `translate(${invert[index].left}px,${invert[index].top}px)`
+      })
+      requestAnimationFrame(() => {
+          doms.forEach((dom, index) => {
+            let animate = dom.animate([{
+                transform: `translate(${invert[index].left}px,${invert[index].top}px)`
+            },{
+                transform: 'translate(0px, 0px)'
+            }], {
+                duration: 1000
+            })
+            animate.addEventListener("finish", () => {
+                dom.style.transform = 'none'
+            })
+          })
+      })
+  })
+</script>
+</html>

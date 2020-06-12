@@ -5,8 +5,14 @@
 - $ 变量符号
 - & 父选择器
 - #{} 模板字符串-将值编译为无符号的字符串作为css的编译值
+    - 无符号字符串代表可以作为css选择器使用
 ## sass中的扩展
-- @import @import "" 全局导入-局部混入
+- @import 全局导入-局部混入  
+以下几种情况作为普通css导入而不是scss-这会导致编译器无法识别特殊字符
+    - @import('*.css')
+    - @import('http*')
+    - @import('* media')
+    - @import url()
 - @media 反向包含父容器
 - @extend 使用向所有被继承选择器出现的地方添加同等一个选择器
 ## sass与scss

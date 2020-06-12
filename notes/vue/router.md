@@ -99,6 +99,7 @@ const router = new VueRouter({
 ### 别名
 > /a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样
 ### 路由传参
+要和#router解开耦合
 #### 方式一
 使用$route
 ### 方式二
